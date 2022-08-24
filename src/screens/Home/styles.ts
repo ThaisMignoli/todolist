@@ -35,4 +35,18 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
     marginLeft: 4,
   },
+  content: {
+    flex: 1,
+    paddingTop: 55,
+    paddingHorizontal: 24,
+  },
+  progress: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 20,
+  },
+  divider: {
+    backgroundColor: "#333333",
+    height: 1,
+  },
 });

@@ -5,6 +5,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { styles } from "./styles";
 
 import logo from "../../assets/logo.png";
+import Counter from "../../components/Counter";
 
 export default function Home() {
   const [task, setTask] = useState<string>("");
@@ -35,6 +36,15 @@ export default function Home() {
         >
           <AntDesign name="pluscircleo" size={16} color="#F2F2F2" />
         </TouchableOpacity>
+      </View>
+
+      <View style={styles.content}>
+        <View style={styles.progress}>
+          <Counter title="Criadas" color="#4EA8DE" />
+          <Counter title="Concluídas" color="#8284FA" />
+        </View>
+
+        <View style={styles.divider} />
       </View>
     </View>
   );
