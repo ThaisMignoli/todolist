@@ -15,6 +15,7 @@ import { styles } from "./styles";
 import logo from "../../assets/logo.png";
 import Counter from "../../components/Counter";
 import Task, { TaskDataProps } from "../../components/Task";
+import EmptyState from "../../components/EmptyState";
 
 export default function Home() {
   const [task, setTask] = useState<string>("");
@@ -106,6 +107,7 @@ export default function Home() {
               onTrashPress={() => handleDeleteTask(item.id)}
             />
           )}
+          ListEmptyComponent={<EmptyState />}
         />
       </View>
     </View>
