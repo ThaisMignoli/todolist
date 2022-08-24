@@ -45,8 +45,4 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 20,
   },
-  divider: {
-    backgroundColor: "#333333",
-    height: 1,
-  },
 });

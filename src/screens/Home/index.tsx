@@ -1,17 +1,69 @@
 import React, { useState } from "react";
-import { Image, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  FlatList,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import uuid from "react-native-uuid";
 
 import { styles } from "./styles";
 
 import logo from "../../assets/logo.png";
 import Counter from "../../components/Counter";
+import Task, { TaskDataProps } from "../../components/Task";
 
 export default function Home() {
   const [task, setTask] = useState<string>("");
+  const [taskList, setTaskList] = useState<TaskDataProps[]>([]);
+
+  const createdAmount = taskList.filter((task) => task.isDone === false).length;
+  const doneAmount = taskList.filter((task) => task.isDone === true).length;
 
   function handleAddTask() {
-    console.log(task), setTask("");
+    if (!task) return;
+    setTaskList((prevState) => [
+      ...prevState,
+      {
+        text: task,
+        isDone: false,
+        id: String(uuid.v4()),
+      },
+    ]);
+    setTask("");
+  }
+
+  function handleDeleteTask(id: string) {
+    Alert.alert("Excluir", "Deseja excluir a tarefa?", [
+      {
+        text: "Sim",
+        onPress: () =>
+          setTaskList((prevState) =>
+            prevState.filter((task) => task.id !== id)
+          ),
+      },
+      {
+        text: "Não",
+        style: "cancel",
+      },
+    ]);
+  }
+
+  function handleCheck(id: string) {
+    setTaskList((prevState) =>
+      prevState.map((task) => {
+        if (task.id === id) {
+          return {
+            ...task,
+            isDone: !task.isDone,
+          };
+        }
+        return task;
+      })
+    );
   }
 
   return (
@@ -40,11 +92,21 @@ export default function Home() {
 
       <View style={styles.content}>
         <View style={styles.progress}>
-          <Counter title="Criadas" color="#4EA8DE" />
-          <Counter title="Concluídas" color="#8284FA" />
+          <Counter title="Criadas" color="#4EA8DE" value={createdAmount} />
+          <Counter title="Concluídas" color="#8284FA" value={doneAmount} />
         </View>
 
-        <View style={styles.divider} />
+        <FlatList
+          data={taskList}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <Task
+              data={item}
+              onCheckPress={() => handleCheck(item.id)}
+              onTrashPress={() => handleDeleteTask(item.id)}
+            />
+          )}
+        />
       </View>
     </View>
   );
