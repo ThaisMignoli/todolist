@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: "#4EA8DE",
     borderRadius: 999,
-    marginRight: 8,
+    marginRight: 12,
   },
   checked: {
     alignItems: "center",
@@ -27,12 +27,13 @@ export const styles = StyleSheet.create({
     width: 18,
     backgroundColor: "#5E60CE",
     borderRadius: 999,
-    marginRight: 8,
+    marginRight: 12,
   },
   text: {
     flex: 1,
     color: "#F2F2F2",
     fontSize: 14,
+    lineHeight: 20,
   },
   checkedText: {
     flex: 1,
@@ -44,5 +45,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 10,
     borderRadius: 6,
+    marginLeft: 8,
   },
 });
