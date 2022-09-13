@@ -21,7 +21,7 @@ export default function Home() {
   const [task, setTask] = useState<string>("");
   const [taskList, setTaskList] = useState<TaskDataProps[]>([]);
 
-  const createdAmount = taskList.filter((task) => task.isDone === false).length;
+  const createdAmount = taskList.length;
   const doneAmount = taskList.filter((task) => task.isDone === true).length;
 
   function handleAddTask() {
