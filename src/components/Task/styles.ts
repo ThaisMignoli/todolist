@@ -39,6 +39,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     color: "#808080",
     fontSize: 14,
+    lineHeight: 20,
     textDecorationLine: "line-through",
   },
   trashButton: {
